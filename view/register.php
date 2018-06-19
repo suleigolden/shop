@@ -33,7 +33,7 @@ include_once("head.php");
                                 <div class="form-group">
                                     <input class="form-control"type="password" placeholder="Password" id="passwordprolog" required>
                                 </div>
-                                <button type="submit" class="btn btn-success" onclick="createAccount();" style="width:100%;">Sign Up</button>
+                                <button type="submit" class="btn btn-success" id="createAccount" style="width:100%;">Sign Up</button>
                              <div id="reg_status"></div> 
                              <hr>
                              <a href="?/=login" class="btn btn-primary">Already have an Account?. Log In</a> 

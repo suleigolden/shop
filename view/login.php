@@ -27,9 +27,9 @@ include_once("head.php");
                                     <input class="form-control" type="Email" placeholder="Email" id="emailprolog" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control"type="password" placeholder="Password" id="passwordprolog" required>
+                                    <input class="form-control" type="password" placeholder="Password" id="passwordprolog" required>
                                 </div>
-                                <button type="submit" class="btn btn-success" onclick="login_user();" style="width:100%;">Log In</button>
+                                <button type="submit" class="btn btn-success" id="loginbtn" style="width:100%;">Log In</button>
                              <div id="logIn_status"></div> 
                              <hr>
                              <a href="?/=register" class="btn btn-primary">I Don't have an Account?</a>
@@ -41,6 +41,10 @@ include_once("head.php");
         </div>
     </div>
 
+<script type="text/javascript">
+   
+
+</script>
 <?php
 include_once("footer.php");
 ?>

@@ -1,10 +1,6 @@
 <?php
-
-class DB {
-
-public function __construct() {
-	//echo "Hello From Model DB class";
-}
+namespace app\model;
+$connect = mysqli_connect('localhost','root','');
+$mydatabase = mysqli_select_db($connect,'shop'); 
 
 
-}

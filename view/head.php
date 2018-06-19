@@ -8,7 +8,8 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/main-style.css" rel="stylesheet" />
     <link href="assets/css/mcustom.css" rel="stylesheet" />
-    <script type="text/javascript" src="assets/scripts/head.js"></script>
+    <script src="assets/scripts/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="assets/scripts/main_Authentication.js"></script>
 </head>
 <header id="home">
     

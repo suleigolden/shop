@@ -21,6 +21,16 @@ public function set_New_pages($page){
 	 $this -> checkpageNotFound("view/".$page.".php");
 	}      
  }
+ //function to handle all the navugation of user page
+ public function profileUserDashboard($dir, $userpage){
+ 	if($userpage == "dashboard"){
+      $this ->CheckpageNotFound("view/userpages/dashboard.php");
+    }else{
+       $userpage = strtok($userpage, '?');
+     $this ->CheckpageNotFound("view/userpages/".$userpage.".php");
+      
+    }
+ }
 //function to check if page exist
 function checkpageNotFound($page){
   $not_found = "404notfound";
