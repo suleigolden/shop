@@ -1,11 +1,21 @@
-<html>
-<head></head>
 
-<body>
 <?php
-include_once('menu.php');
+include_once("head.php");
 ?>
-<h1>404 page not found</h1>
+<body class="">
+    <section>
+		     
+    <div class="container">
+     
+            <h1>404 page not found</h1>
+            
+    </div>
+			
+	</section>
+<?php
+include_once("footer.php");
+?>
 
 </body>
+
 </html>

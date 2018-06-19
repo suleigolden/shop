@@ -1,11 +1,27 @@
+<!DOCTYPE html>
 <html>
-<head></head>
 
-<body>
 <?php
-include_once('menu.php');
+include_once("head.php");
 ?>
-<h1>Home Page View</h1>
+<body class="">
+    <section>
+		     
+    <div class="container">
+     
+             <div class="row">
+            <h2 class="page-header" style="text-align:center;">Products</h2>
+            <div class="col-md-4 text-center">
+                
+            </div>
+            </div>
+    </div>
+			
+	</section>
+<?php
+include_once("footer.php");
+?>
 
 </body>
+
 </html>

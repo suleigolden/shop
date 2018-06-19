@@ -14,8 +14,12 @@ public function HomePage(){
 }
 //Function to Navigate to user define page
 public function set_New_pages($page){ 
- $page = strtok($page, '?');
- $this -> checkpageNotFound("view/".$page.".php");      
+	if(empty($page)){
+		$this ->HomePage();
+	}else{
+	 $page = strtok($page, '?');
+	 $this -> checkpageNotFound("view/".$page.".php");
+	}      
  }
 //function to check if page exist
 function checkpageNotFound($page){
