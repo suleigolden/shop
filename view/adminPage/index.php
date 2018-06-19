@@ -71,19 +71,19 @@
                                                       <div id="TextBoxesGroup">
                                                         <div id="TextBoxDiv1">
                                                         <div class="form-group">
-<img src="Productimg/photo_default.png" id="Product_averta" style="margin-left: 0%; width: 60%;"><hr>
+<img src="../../productImg/photo_default.png" id="Product_averta" style="margin-left: 0%; width: 60%;"><hr>
                                                          <label></label>
                                                          <label style="margin-top:0px; float: left; width:;"><a class="ajax-link" style="color:#2a9464;" ><i class="fa fa-camera"></i> Select Product  Image</a></label>
                                                          <input type="file" name="imageProduct" id="imageProduct" style=" margin-top:-30px; height:37px; float: left; opacity:0; width:99%;"/>
                                                         </div>
                                                           <div class="form-group">
                                                             <label>Name</label>
-                                                            <input class="form-control" placeholder="Product Name" id="FDName">
+                                                            <input class="form-control" placeholder="Product Name" id="PName">
                                                           </div>
                                                           
                                                           <div class="form-group">
                                                             <label>Color</label>
-                                    <select class="form-control" id="HDelivery">
+                                                            <select class="form-control" id="pColor">
                                                               <option value="">Select Color</option>
                                                               <option value="Black">Black</option>
                                                               <option value="Yellow">Yellow</option>
@@ -91,11 +91,32 @@
                                                               <option value="White">White</option>
                                                             </select>
                                                           </div>
+                                                          <div class="form-group">
+                                                            <label>Category</label>
+                                                            <select class="form-control" id="pCategory">
+                                                              <option value="">Select Category</option>
+                                                              <option value="Casual Wear">Casual Wear</option>
+                                                              <option value="Sports Wear">Sport Wear</option>
+                                                              <option value="Office Wear">Office Wear</option>
+                                                            </select>
+                                                          </div>
+                                                           <div class="form-group">
+                                                            <label>Brand</label>
+                                                            <select class="form-control" id="pBrand">
+                                                              <option value="">Select Brand</option>
+                                                              <option value="Adidas">Adidas</option>
+                                                              <option value="Nike">Nike</option>
+                                                            </select>
+                                                          </div>
                                                           
                                                          </div>
                                                          <div class="form-group">
                                                             <label>Price</label>
-                                                            <input class="form-control" type="number" placeholder="Price" id="FDprice">
+                                                            <input class="form-control" type="number" placeholder="Price" id="pPrice">
+                                                          </div>
+                                                           <div class="form-group">
+                                                            <label>Quantity</label>
+                                                            <input class="form-control" type="number" placeholder="Quantity" id="pQuantity">
                                                           </div>
 
                                                          </div>
@@ -127,7 +148,69 @@
       </div>
 
     </div>
+<script src="../../assets/scripts/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+//change photo on select photo
+    $('#imageProduct').change(function(event) {
+        $("#Product_averta").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
+       });
+ //Process Avatar You 
+    $("#saveProductproduct").click(function(){
+    var file = document.getElementById("imageProduct").files[0];
+    var pname = $("#PName").val();
+    var color = $("#pColor").val();
+    var category = $("#pCategory").val();
+    var brand = $("#pBrand").val();
+    var price = $("#pPrice").val();
+    var quantity = $("#pQuantity").val();
+    var formdata = new FormData();
+    formdata.append("ProductImage", file);
+    formdata.append("ProductName", pname);
+    formdata.append("ProductCategory", category);
+    formdata.append("Quantity", quantity);
+    formdata.append("Color", color);
+    formdata.append("Brand", brand);
+    formdata.append("Price", price);
+    var hr = new XMLHttpRequest();
+    var url = "app/controller/productController.php";
+      hr.open("POST", url, true);
+      hr.onreadystatechange = function() {
+    if (hr.readyState == 4 && hr.status == 200) {
+      var return_data = JSON.parse(hr.responseText);
+      if(return_data == "true"){
+        
+        $('#result_output').prepend('');
+            document.getElementById("Product_averta").src = 'Productimg/photo_default.png';
+            
+            $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); $('#savestatus').html('');
+          $('#savestatus').html("<i style='color:#5cb85c;'>Save Successful</i>");
+          $("#savestatus").fadeOut(9000);
+             clearFields();
+      }else{
+           
+      }
+        
+    }else{
+        
+      }
+  }
+  hr.send(formdata);
+   $("#savestatus").fadeIn();
+   $('#savestatus').html("<i style='color:#5cb85c;'>Saving Product Product...<i class='icon-spin6 animate-spin'></i></i></i>");
+    });
+//End of Document.ready function
+ });
+function clearFields() {
+  $('#Product_form').find('input:text').val('');
+  $('#pCategory option:first').prop('selected',true);
+  $("#FDquantity").val('')
+  $('#pBrand option:first').prop('selected',true);
+  $('#pColor option:first').prop('selected',true);
+  $("#FDprice").val('')
+}
 
+</script> 
         <!-- Bootstrap core JavaScript -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="../../assets/sbadmin/js/bootstrap.js"></script>
