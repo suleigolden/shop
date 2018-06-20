@@ -4,6 +4,7 @@
     <title>Suleiman Shopping</title>
     <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/sbadmin/font-awesome/css/font-awesome.min.css">
     <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/main-style.css" rel="stylesheet" />
@@ -27,7 +28,8 @@
           </a>                    
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">  
+          <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><i class="fa fa-shopping-cart"></i> 10 <br>shopping cart</a></li>  
             <li class="scroll"><a href="?/=login">Log in</a></li>  
           </ul>
         </div>

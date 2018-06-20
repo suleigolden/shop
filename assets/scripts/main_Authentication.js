@@ -62,6 +62,26 @@ $("#loginbtn").click(function(){
 
 
 
+//*************Get all products***************
+    var hr = new XMLHttpRequest();
+    var url = "app/controller/productController.php";
+    var vars = "LoadallProducts=true";
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.onreadystatechange = function() {
+      if(hr.readyState == 4 && hr.status == 200) {
+        var return_data = hr.responseText;
+        //var return_datad = JSON.parse(hr.responseText);
+        $('#result_output').html(return_data);
+        //console.log(return_datad.);
+        $('#requestSearch_status').html("");
+      }
+    }
+    
+    hr.send(vars);
+    $('#requestSearch_status').html("<i style='color:green;'>Loading Products............</i>");
+
+    //End of Document.ready function
 
 
 

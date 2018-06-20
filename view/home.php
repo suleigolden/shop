@@ -8,13 +8,16 @@ include_once("head.php");
     <section>
 		     
     <div class="container">
-     
-             <div class="row">
+        <div class="row">
             <h2 class="page-header" style="text-align:center;">Products</h2>
-            <div class="col-md-4 text-center">
+
+            <h4 id="requestSearch_status"></h4>
+            <div class="col-lg-10" id="result_output">
                 
             </div>
-            </div>
+          
+
+        </div>
     </div>
 			
 	</section>

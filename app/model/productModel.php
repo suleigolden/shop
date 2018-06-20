@@ -344,6 +344,38 @@ $allProducts .= '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex=
 
 
 }
+//Method to get all the product return the result to User
+function getallProductToUser($connect){
+$allProducts .= '';
+$sql = mysqli_query($connect,"SELECT * FROM products ORDER BY id DESC");
+while($row = $sql->fetch_array()){
+			$ID = $row['id'];
+			$getName = $row['productName'];
+			$getPrice = $row['price'];
+			$getImage = $row['image'];
+			$getColor = $row['color'];
+			$getBrand = $row['brand'];
+			$getCategory = $row['category'];
+			$getQuantity = $row['quantity'];
+
+$allProducts .='<div class="col-md-4 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="productImg/'.$getImage.'" style="width: 100%;
+    height: 330px;
+" alt="name">
+                    <div class="caption">
+                        <h4>'.$getBrand.' '.$getName.' ('.$getColor.')<br>
+                            <small style="color: #F00;">€ '.$getPrice.'</small>
+                        </h4>
+                        <a href="" class="btn btn-primary min"><i class="fa fa-shopping-cart"></i> buy</a>
+                    </div>
+                </div>  
+            </div>';
+		}
+
+echo $allProducts;
+
+}
 
 
 }
