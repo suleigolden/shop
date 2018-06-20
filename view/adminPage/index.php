@@ -394,6 +394,29 @@ $("#savestatusupdate"+Product).fadeIn();
 $('#savestatusupdate'+Product).html("<i style='color:#5cb85c;'>Updating...<i class='icon-spin6 animate-spin'></i></i></i>");
 
 }
+//function to delete product  
+function deleteProduct(id,Product,img){
+  var con = confirm("Are you sure you want to delete"+Product+" ?");
+    if(con != true){
+        return false;
+    }else{
+      var vars = "ProductdeleterecordID="+id+"&oldImage="+img;
+      var hr = new XMLHttpRequest();
+      var url = "../../app/controller/productController.php";
+      hr.open("POST", url, true);
+      hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      hr.onreadystatechange = function() {
+        if (hr.readyState == 4 && hr.status == 200) {
+          var return_data = hr.responseText;
+            $('#Productdeleterecord'+id).hide();
+        
+    }
+  }
+  hr.send(vars);
+  $('#Productdeltemessage'+id).html("<i style='color:#FFF;'>dele...<i class='icon-spin6 animate-spin'></i></i>");
+}
+  
+}
 
 </script> 
         <!-- Bootstrap core JavaScript -->

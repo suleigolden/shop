@@ -26,6 +26,8 @@ if(isset($_FILES["ProductImage"]["name"])
 	$Request ->  getallProduct($connect);
 }elseif(isset($_FILES["ProductImage"]["name"]) && isset($_POST['ProductID']) && isset($_POST['oldImageUpdate']) ){
 	$Request ->  updateProductImage($connect);
+}elseif(isset($_POST['ProductdeleterecordID']) && isset($_POST['oldImage'])){
+	$Request ->  deleteProduct($connect);
 }else{
 	echo "NOOOO";
 	//$Request ->  loginUser($connect);

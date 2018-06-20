@@ -103,6 +103,18 @@ function updateProductDetails($connect){
 		
 	}
 }
+//Function to Delete Product
+function deleteProduct($connect){
+$proudctID =$_POST['ProductdeleterecordID'];
+$oldPhoto = $_POST['oldImage'];
+if(mysqli_query($connect,"DELETE FROM products WHERE id='$proudctID'")){
+	unlink("../../productimg/".$oldPhoto);
+	echo "";
+}else{
+	echo "";
+}
+
+}
 //Metho to get the last product inserted
 function getProductinserted($connect){
 $sql = mysqli_query($connect,"SELECT * FROM products ");
@@ -228,7 +240,7 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                                 </div>
                                 
                             </div>
-                            <tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
+                            <tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
                                             <td>
                                                  <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
                                             </td>
@@ -240,7 +252,7 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                                             <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
                                             <td class="center">
                                                 <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
-                                                 <a onClick="deleteProductadd_player(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
+                                                 <a onClick="deleteProduct(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
 
                                         </tr>
