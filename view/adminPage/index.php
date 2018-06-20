@@ -238,9 +238,9 @@ $(document).ready(function(){
       hr.onreadystatechange = function() {
     if (hr.readyState == 4 && hr.status == 200) {
       var return_data = hr.responseText;
-      if(return_data == "true"){
+      if(return_data != "false"){
         
-        $('#result_output').prepend('');
+        $('#result_output').prepend(''+return_data+'');
             document.getElementById("Product_averta").src = 'Productimg/photo_default.png';
             
             $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); //$('#savestatus').html('');
@@ -248,7 +248,7 @@ $(document).ready(function(){
           $("#savestatus").fadeOut(9000);
              clearFields();
       }else{
-           $('#savestatus').html("<i style='color:#5cb85c;'>"+return_data+"</i>");
+           $('#savestatus').html("<i style='color:#5cb85c;'><label style='color:#F00;'>ERROR: Please try again.</label></i>");
       }
         
     }else{
@@ -273,7 +273,7 @@ $(document).ready(function(){
         //var return_datad = JSON.parse(hr.responseText);
         $('#result_output').html(return_data);
         //console.log(return_datad.);
-        //$('#requestSearch_status').html("");
+        $('#requestSearch_status').html("");
       }
     }
     

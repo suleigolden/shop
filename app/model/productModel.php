@@ -8,8 +8,7 @@ error_reporting(E_ERROR);
 ini_set('display_errors', '1');
 
 class productModel {
-
-
+//Method to insert new product
 function saveProduct($connect){
 	if(empty($_FILES["ProductImage"]["name"])){
 	   echo "<label style='color:#F00;'>Error: Please select a product picture...</label>";
@@ -34,20 +33,49 @@ function saveProduct($connect){
 		
 		if(move_uploaded_file($fileTmpLoc, "../../productImg/$fileName")){
 			mysqli_query($connect,"INSERT INTO products VALUES ('','".$_POST['ProductName']."','".$_POST['Price']."','$fileName','".$_POST['Color']."','".$_POST['Brand']."','".$_POST['ProductCategory']."','".$_POST['Quantity']."',Now())");
-			  
 			//echo "productImg/$fileName";
-			echo $productSave;
+			echo $this->getProductinserted($connect);;
 		} else {
-		    echo "<label style='color:#F00;'>ERROR: Please try again.</label>";
+			echo "false";
 		}
 		
 	}
 
 
 }
+//Metho to get the last product inserted
+function getProductinserted($connect){
+$sql = mysqli_query($connect,"SELECT * FROM products ");
+while($row = $sql->fetch_array()){
+			$ID = $row['id'];
+			$getName = $row['productName'];
+			$getPrice = $row['price'];
+			$getImage = $row['image'];
+			$getColor = $row['color'];
+			$getBrand = $row['brand'];
+			$getCategory = $row['category'];
+			$getQuantity = $row['quantity'];
+     }
+
+return '<tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
+                                            <td>
+                                                 <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
+                                            </td>
+                                            <td id="upName">'.$getName.'</td>                                            
+                                            <td id="updPrice'.$ID.'">'.$getPrice.'</td>
+                                            <td id="updColor'.$ID.'">'.$getColor.'</td>
+                                            <td id="updCategory'.$ID.'">'.$getCategory.'</td>
+                                            <td id="updBrand'.$ID.'">'.$getBrand.'</td>
+                                            <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
+                                            <td class="center">
+                                                <a data-toggle="modal" data-target="#myModal'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
+                                                 <a onClick="deleteProductadd_player(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
+                                            </td>
+                                        </tr>';
 
 
-
+}
+//Method to get all the product return the result to admin page
 function getallProduct($connect){
 $allProducts .= '';
 $sql = mysqli_query($connect,"SELECT * FROM products ");
