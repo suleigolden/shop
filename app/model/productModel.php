@@ -242,7 +242,7 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                             </div>
                             <tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
                                             <td>
-                                                 <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
+                                                 <img src="../../productImg/'.$getImage.'" id="updateProductImg'.$ID.'" style="height: 40px; width: 50px;">
                                             </td>
                                             <td id="upName'.$ID.'">'.$getName.'</td>                                            
                                             <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>

@@ -297,7 +297,7 @@ function getProducts(){
   //Change update photo onchnage
 function chnageimgupdate(img){
     var filesSelected = document.getElementById("imageProduct"+img).files;
-    var newimage = document.getElementById("Product_averta"+img);
+    var newimage = document.getElementById("Product_avertaupdate"+img);
     if (filesSelected.length > 0)
     {
         var fileToLoad = filesSelected[0];
@@ -333,7 +333,7 @@ function uploadProductFile(img,oldimg){
       var return_data = hr.responseText;
       console.log(return_data);
       if(return_data != "false"){
-             document.getElementById("Product_avertaupdate"+img).src = '../../productimg/'+return_data;
+             document.getElementById("updateProductImg"+img).src = '../../productimg/'+return_data;
           $('#statusimg'+img).html("<i style='color:#5cb85c;'>Update Successful</i>");
           $("#statusimg"+img).fadeOut(9000);
       }else{
