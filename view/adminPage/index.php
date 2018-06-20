@@ -172,23 +172,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="result_output">
-                                    <tr class="gradeA odd" role="row" id="deleterecord-ID">
-                                            <td>
-                                                 <img src="../../productImg/{{ $food['image'] }}" id="food_avertaupdate-ID" style="height: 40px; width: 50px;">
-                                            </td>
-                                            <td>Win 98+ / OSX.2+</td>                                            
-                                            <td class="center">1.7</td>
-                                            <td class="sorting_1">Gecko</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td>Win 98+ / OSX.2+</td>                                            
-                                            <td class="center">
-                                                <a data-toggle="modal" data-target="#myModal-ID" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
-                                                 <a onClick="deletefood('{{ $food->FoodID }}','{{ $food->Name }}','foodimg/{{ $food->image }}')" id="fooddeltemessage{{ $food['FoodID'] }}" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
-                                            </td>
-                                        </tr>
-                                       
-                                        
+                                    
                                     </tbody>
                                 </table>
                                 </div>
@@ -241,7 +225,7 @@ $(document).ready(function(){
       if(return_data != "false"){
         
         $('#result_output').prepend(''+return_data+'');
-            document.getElementById("Product_averta").src = 'Productimg/photo_default.png';
+            document.getElementById("Product_averta").src = '../../Productimg/photo_default.png';
             
             $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); //$('#savestatus').html('');
           $('#savestatus').html("<i style='color:#5cb85c;'>Save Successful</i>");

@@ -88,7 +88,87 @@ while($row = $sql->fetch_array()){
 			$getBrand = $row['brand'];
 			$getCategory = $row['category'];
 			$getQuantity = $row['quantity'];
-$allProducts .= '<tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
+$allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel"><i class="icon-Product-1"></i> Update '.$getName.'</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div id="Product_form'.$ID.'">
+                                                <div class="">
+                                                      <div id="TextBoxesGroup">
+                                                        <div id="TextBoxDiv1">
+                                                        <div class="form-group">
+<img src="../../productImg/'.$getImage.'" id="Product_averta'.$ID.'" style="margin-left: 0%; width: 60%;"><hr>
+                                                         <label></label>
+                                                         <label style="margin-top:0px; float: left; width:;"><a class="ajax-link" style="color:#2a9464;" ><i class="fa fa-camera"></i> Select Product  Image</a></label>
+                                                         <input type="file" name="imageProduct'.$ID.'" id="imageProduct'.$ID.'" style=" margin-top:-30px; height:37px; float: left; opacity:0; width:99%;"/>
+                                                        </div>
+                                                          <div class="form-group" style="width:100%;">
+                                                            <label>Name</label>
+                                                            <input class="form-control" value="'.$getName.'" placeholder="Product Name" id="PName'.$ID.'">
+                                                          </div><br>
+                                                          
+                                                          <div class="form-group" style="width:100%;">
+                                                            <label>Color</label>
+                                                            <select class="form-control" id="pColor'.$ID.'">
+                                                              <option value="'.$getColor.'">'.$getColor.'</option>
+                                                              <option value="Black">Black</option>
+                                                              <option value="Yellow">Yellow</option>
+                                                              <option value="Red">Red</option>
+                                                              <option value="White">White</option>
+                                                            </select>
+                                                          </div><br>
+                                                          <div class="form-group" style="width:100%;">
+                                                            <label>Category</label>
+                                                            <select class="form-control" id="pCategory'.$ID.'">
+                                                              <option value="'.$getCategory.'">'.$getCategory.'</option>
+                                                              <option value="Casual Wear">Casual Wear</option>
+                                                              <option value="Sports Wear">Sport Wear</option>
+                                                              <option value="Office Wear">Office Wear</option>
+                                                            </select>
+                                                          </div><br>
+                                                           <div class="form-group" style="width:100%;">
+                                                            <label>Brand</label>
+                                                            <select class="form-control" id="pBrand'.$ID.'">
+                                                              <option value="'.$getBrand.'">'.$getBrand.'</option>
+                                                              <option value="Adidas">Adidas</option>
+                                                              <option value="Nike">Nike</option>
+                                                            </select>
+                                                          </div><br>
+                                                          
+                                                         </div>
+                                                         <div class="form-group" style="width:100%;">
+                                                            <label>Price</label>
+                                                            <input class="form-control" type="number" placeholder="Price" value="'.$getPrice.'" id="pPrice'.$ID.'">
+                                                          </div><br>
+                                                           <div class="form-group" style="width:100%;">
+                                                            <label>Quantity</label>
+                                                            <input class="form-control" type="number" placeholder="Quantity" value="'.$getQuantity.'" id="pQuantity'.$ID.'">
+                                                          </div><br>
+
+                                                         </div>
+                                                          <p id="removeMessage'.$ID.'" style="color:#F00;"></p>
+                                                          <button class="btn btn-success" onclick="updatefoodproduct(\''.$ID.'\');"><i class="fa fa-save"></i> Update Product</button>
+                                                          <br><br>
+<div id="savestatus1"></div><div id="savestatus2"></div><div id="savestatus3"></div>
+<div id="savestatus4"></div><div id="savestatus5"></div><div id="savestatus6"></div>
+<div id="savestatus7"></div>
+                                                         <div id="savestatus'.$ID.'"></div>
+                                                      </div>
+                                          </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                         
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                
+                            </div>
+                            <tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
                                             <td>
                                                  <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
                                             </td>
@@ -99,10 +179,12 @@ $allProducts .= '<tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
                                             <td id="updBrand'.$ID.'">'.$getBrand.'</td>
                                             <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
                                             <td class="center">
-                                                <a data-toggle="modal" data-target="#myModal'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
+                                                <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
                                                  <a onClick="deleteProductadd_player(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
-                                        </tr>';
+
+                                        </tr>
+                                       ';
      }
 
      echo $allProducts;
