@@ -121,7 +121,7 @@
 
                                                          </div>
                                                           <p id="removeMessage" style="color:#F00;"></p>
-                                                          <button class="btn btn-success" id="saveProductproduct"><i class="icon-Product-1"></i> Save Product</button>
+                                                          <button class="btn btn-success" id="saveProductproduct"><i class="fa fa-save"></i> Save Product</button>
                                                           <br><br>
 <div id="savestatus1"></div><div id="savestatus2"></div><div id="savestatus3"></div>
 <div id="savestatus4"></div><div id="savestatus5"></div><div id="savestatus6"></div>
