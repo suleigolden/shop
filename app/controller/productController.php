@@ -14,6 +14,14 @@ if(isset($_FILES["ProductImage"]["name"])
  && isset($_POST['Brand'])
  && isset($_POST['Price'])) {
 	$Request ->  saveProduct($connect);
+}elseif(isset($_POST['uProductID'])
+ && isset($_POST['uProductName'])
+ && isset($_POST['uProductCategory'])
+ && isset($_POST['uQuantity'])
+ && isset($_POST['uColor'])
+ && isset($_POST['uBrand'])
+ && isset($_POST['uPrice'])) {
+	$Request -> updateProductDetails($connect);
 }elseif(isset($_POST['getAllProducts'])){
 	$Request ->  getallProduct($connect);
 }elseif(isset($_FILES["ProductImage"]["name"]) && isset($_POST['ProductID']) && isset($_POST['oldImageUpdate']) ){

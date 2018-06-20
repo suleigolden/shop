@@ -65,6 +65,44 @@ function updateProductImage($connect){
 		}
 	}
 }
+//Function to Update Product Details
+function updateProductDetails($connect){
+	if(empty($_POST['uProductName'])){
+	  echo "<label style='color:#F00;'>Product Name can not be empty</label>";
+	}else if(empty($_POST['uColor'])){
+	   echo "<label style='color:#F00;'>Please select a product Color.</label>";
+	}else if(empty($_POST['uProductCategory'])){
+	   echo "<label style='color:#F00;'>Product Category can not be empty.</label>";
+	}else if(empty($_POST['uBrand'])){
+	   echo "<label style='color:#F00;'>Please select the Brand of the product.</label>";
+	}else if(empty($_POST['uPrice'])){
+	   echo "<label style='color:#F00;'>Price can not be empty</label>";
+	}else if(empty($_POST['uQuantity'])){
+	   echo "<label style='color:#F00;'>Quantity can not be empty.</label>";
+	}else{
+			$proudctID =$_POST['uProductID'];
+			$getName = $_POST['uProductName'];
+			$getPrice = $_POST['uPrice'];
+			$getColor = $_POST['uColor'];
+			$getBrand = $_POST['uBrand'];
+			$getCategory = $_POST['uProductCategory'];
+			$getQuantity = $_POST['uQuantity'];
+		
+		if(mysqli_query($connect,"UPDATE products SET  
+			productName = '$getName',
+			price = '$getPrice',
+			color = '$getColor',
+			brand = '$getBrand',
+			category = '$getCategory',
+			quantity = '$getQuantity' WHERE id='$proudctID' ")){
+
+			echo "true";
+		} else {
+			echo "<label style='color:#F00;'>Error.... please try again</label>";
+		}
+		
+	}
+}
 //Metho to get the last product inserted
 function getProductinserted($connect){
 $sql = mysqli_query($connect,"SELECT * FROM products ");
@@ -83,8 +121,8 @@ return '<tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
                                             <td>
                    <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate'.$ID.'" style="height: 40px; width: 50px;">
                                             </td>
-                                            <td id="upName">'.$getName.'</td>                                            
-                                            <td id="updPrice'.$ID.'">'.$getPrice.'</td>
+                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
+                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
                                             <td id="updColor'.$ID.'">'.$getColor.'</td>
                                             <td id="updCategory'.$ID.'">'.$getCategory.'</td>
                                             <td id="updBrand'.$ID.'">'.$getBrand.'</td>
@@ -132,7 +170,7 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                                                         </div>
                                                           <div class="form-group" style="width:100%;">
                                                             <label>Name</label>
-                                                            <input class="form-control" value="'.$getName.'" placeholder="Product Name" id="PName'.$ID.'">
+                                                            <input class="form-control" value="'.$getName.'" placeholder="Product Name" id="pName'.$ID.'">
                                                           </div><br>
                                                           
                                                           <div class="form-group" style="width:100%;">
@@ -175,12 +213,9 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
 
                                                          </div>
                                                           <p id="removeMessage'.$ID.'" style="color:#F00;"></p>
-                                                          <button class="btn btn-success" onclick="updatefoodproduct(\''.$ID.'\');"><i class="fa fa-save"></i> Update Product</button>
+    <button class="btn btn-success" onclick="updateProductproduct(\''.$ID.'\');"><i class="fa fa-save"></i> Update Product</button>
                                                           <br><br>
-<div id="savestatus1"></div><div id="savestatus2"></div><div id="savestatus3"></div>
-<div id="savestatus4"></div><div id="savestatus5"></div><div id="savestatus6"></div>
-<div id="savestatus7"></div>
-                                                         <div id="savestatus'.$ID.'"></div>
+                                                         <div id="savestatusupdate'.$ID.'"></div>
                                                       </div>
                                           </div>
                                         </div>
@@ -197,8 +232,8 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                                             <td>
                                                  <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
                                             </td>
-                                            <td id="upName">'.$getName.'</td>                                            
-                                            <td id="updPrice'.$ID.'">'.$getPrice.'</td>
+                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
+                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
                                             <td id="updColor'.$ID.'">'.$getColor.'</td>
                                             <td id="updCategory'.$ID.'">'.$getCategory.'</td>
                                             <td id="updBrand'.$ID.'">'.$getBrand.'</td>

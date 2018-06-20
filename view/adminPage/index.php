@@ -78,7 +78,7 @@
                                                         </div>
                                                           <div class="form-group">
                                                             <label>Name</label>
-                                                            <input class="form-control" placeholder="Product Name" id="PName">
+                                                            <input class="form-control" placeholder="Product Name" id="pName">
                                                           </div>
                                                           
                                                           <div class="form-group">
@@ -202,7 +202,7 @@ $(document).ready(function(){
  //Process Avatar You 
     $("#saveProductproduct").click(function(){
     var file = document.getElementById("imageProduct").files[0];
-    var pname = $("#PName").val();
+    var pname = $("#pName").val();
     var color = $("#pColor").val();
     var category = $("#pCategory").val();
     var brand = $("#pBrand").val();
@@ -350,6 +350,49 @@ function uploadProductFile(img,oldimg){
   hr.send(formdata);
    $("#statusimg"+img).fadeIn();
    $('#statusimg'+img).html("<i style='color:#5cb85c;'>uploading...</i></i>");
+}
+//Update Product detailss
+function updateProductproduct(Product){
+    var pname = $("#pName"+Product).val();
+    var color = $("#pColor"+Product).val();
+    var category = $("#pCategory"+Product).val();
+    var brand = $("#pBrand"+Product).val();
+    var price = $("#pPrice"+Product).val();
+    var quantity = $("#pQuantity"+Product).val();
+    var vars = "uProductID="+Product+"&uProductName="+pname+"&uProductCategory="+category+"&uQuantity="+quantity+"&uColor="+color+"&uBrand="+brand+"&uPrice="+price;
+      var hr = new XMLHttpRequest();
+      var url = "../../app/controller/productController.php";
+      hr.open("POST", url, true);
+      hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      hr.onreadystatechange = function() {
+    if (hr.readyState == 4 && hr.status == 200) {
+      var return_data = hr.responseText;
+      if(return_data == "true"){
+                $('#upName'+Product).html(''+pname+'')
+                $('#updPrice'+Product).html('€ '+price+'')
+                $('#updColor'+Product).html(''+color+'')
+                $('#updCategory'+Product).html(''+category+'')
+                $('#updBrand'+Product).html(''+brand+'')
+                $('#updQuantity'+Product).html(''+quantity+'')
+                  
+    
+          $('#savestatusupdate'+Product).html("<i style='color:#5cb85c;'>Save Successful</i>");
+          $("#savestatusupdate"+Product).fadeOut(9000);
+      }else{
+          $('#savestatusupdate'+Product).html(return_data);
+      }
+        
+    }else{
+        //  var return_data = JSON.parse(hr.responseText);
+
+        // console.log(return_data);
+        // $('#savestatus').html("<i style='color:#F00;'> Error</i>");
+      }
+   }
+   hr.send(vars);
+$("#savestatusupdate"+Product).fadeIn();
+$('#savestatusupdate'+Product).html("<i style='color:#5cb85c;'>Updating...<i class='icon-spin6 animate-spin'></i></i></i>");
+
 }
 
 </script> 
