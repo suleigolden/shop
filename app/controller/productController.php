@@ -16,6 +16,8 @@ if(isset($_FILES["ProductImage"]["name"])
 	$Request ->  saveProduct($connect);
 }elseif(isset($_POST['getAllProducts'])){
 	$Request ->  getallProduct($connect);
+}elseif(isset($_FILES["ProductImage"]["name"]) && isset($_POST['ProductID']) && isset($_POST['oldImageUpdate']) ){
+	$Request ->  updateProductImage($connect);
 }else{
 	echo "NOOOO";
 	//$Request ->  loginUser($connect);

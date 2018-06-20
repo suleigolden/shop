@@ -43,6 +43,28 @@ function saveProduct($connect){
 
 
 }
+//Method to update product Image
+function updateProductImage($connect){
+	if(empty($_FILES["ProductImage"]["name"])){
+	   echo "<label style='color:#F00;'>Error: Please select a product picture...</label>";
+	}else{
+		$fileName = $_FILES["ProductImage"]["name"]; 
+		$fileTmpLoc = $_FILES["ProductImage"]["tmp_name"]; 
+		$fileType = $_FILES["ProductImage"]["type"]; 
+		$fileSize = $_FILES["ProductImage"]["size"];
+		$fileErrorMsg = $_FILES["ProductImage"]["error"];
+		$oldPhoto =$_POST['oldImageUpdate'];
+		$productID = $_POST['ProductID'];
+		
+		if(move_uploaded_file($fileTmpLoc, "../../productImg/$fileName")){
+			unlink("../../".$oldPhoto);
+			mysqli_query($connect,"UPDATE products SET image='$fileName' WHERE id='$productID' ");
+			echo $fileName;
+		} else {
+		    echo "false";
+		}
+	}
+}
 //Metho to get the last product inserted
 function getProductinserted($connect){
 $sql = mysqli_query($connect,"SELECT * FROM products ");
@@ -59,7 +81,7 @@ while($row = $sql->fetch_array()){
 
 return '<tr class="gradeA odd" role="row" id="deleterecord'.$ID.'">
                                             <td>
-                                                 <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate-ID" style="height: 40px; width: 50px;">
+                   <img src="../../productImg/'.$getImage.'" id="Product_avertaupdate'.$ID.'" style="height: 40px; width: 50px;">
                                             </td>
                                             <td id="upName">'.$getName.'</td>                                            
                                             <td id="updPrice'.$ID.'">'.$getPrice.'</td>
@@ -100,10 +122,13 @@ $allProducts .= ' <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex
                                                       <div id="TextBoxesGroup">
                                                         <div id="TextBoxDiv1">
                                                         <div class="form-group">
-<img src="../../productImg/'.$getImage.'" id="Product_averta'.$ID.'" style="margin-left: 0%; width: 60%;"><hr>
+<img src="../../productImg/'.$getImage.'" id="Product_avertaupdate'.$ID.'" style="margin-left: 0%; width: 60%;"><hr>
                                                          <label></label>
                                                          <label style="margin-top:0px; float: left; width:;"><a class="ajax-link" style="color:#2a9464;" ><i class="fa fa-camera"></i> Select Product  Image</a></label>
-                                                         <input type="file" name="imageProduct'.$ID.'" id="imageProduct'.$ID.'" style=" margin-top:-30px; height:37px; float: left; opacity:0; width:99%;"/>
+                                                         <input type="file" name="imageProduct'.$ID.'" id="imageProduct'.$ID.'" onchange="chnageimgupdate(\''.$ID.'\')" style=" margin-top:-30px; height:37px; float: left; opacity:0; width:99%;"/>
+                                                         <br>
+<button class="btn-primary" style="border-radius:3px; font-size: 13px; padding: 4px; color: #FFF;" onclick="uploadProductFile(\''.$ID.'\',\'productImg/'.$getImage.'\');"><i class="fa fa-upload"></i> Upload </button>
+                                                         <code id="statusimg'.$ID.'" style="background-color:transparent;"></code>
                                                         </div>
                                                           <div class="form-group" style="width:100%;">
                                                             <label>Name</label>

@@ -225,7 +225,7 @@ $(document).ready(function(){
       if(return_data != "false"){
         
         $('#result_output').prepend(''+return_data+'');
-            document.getElementById("Product_averta").src = '../../Productimg/photo_default.png';
+            document.getElementById("Product_averta").src = '../../productimg/photo_default.png';
             
             $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); //$('#savestatus').html('');
           $('#savestatus').html("<i style='color:#5cb85c;'>Save Successful</i>");
@@ -293,6 +293,64 @@ function getProducts(){
     // $('#requestSearch_status').html("<i style='color:green;'>Retrieving Products........</i>");
  
   }
+
+  //Change update photo onchnage
+function chnageimgupdate(img){
+    var filesSelected = document.getElementById("imageProduct"+img).files;
+    var newimage = document.getElementById("Product_averta"+img);
+    if (filesSelected.length > 0)
+    {
+        var fileToLoad = filesSelected[0];
+
+        if (fileToLoad.type.match("image.*"))
+        {
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoadedEvent) 
+            {
+                var imageLoaded = document.createElement("img");
+                newimage.src = fileLoadedEvent.target.result;
+                //document.getElementById("Product_averta"+img).src = imageLoaded;
+                //document.body.appendChild(imageLoaded);
+            };
+            fileReader.readAsDataURL(fileToLoad);
+            
+        }
+    }
+}
+
+//Update Product image
+function uploadProductFile(img,oldimg){
+    var file = document.getElementById("imageProduct"+img).files[0];
+    var formdata = new FormData();
+    formdata.append("ProductID", img);
+    formdata.append("ProductImage", file);
+    formdata.append("oldImageUpdate", oldimg);
+    var hr = new XMLHttpRequest();
+    var url = "../../app/controller/productController.php";
+      hr.open("POST", url, true);
+      hr.onreadystatechange = function() {
+    if (hr.readyState == 4 && hr.status == 200) {
+      var return_data = hr.responseText;
+      console.log(return_data);
+      if(return_data != "false"){
+             document.getElementById("Product_avertaupdate"+img).src = '../../productimg/'+return_data;
+          $('#statusimg'+img).html("<i style='color:#5cb85c;'>Update Successful</i>");
+          $("#statusimg"+img).fadeOut(9000);
+      }else{
+          $('#statusimg'+img).html("<i style='color:#F00;'>Error uploading, please try again.</i>");
+      }
+        
+    }else{
+        //  var return_data = JSON.parse(hr.responseText);
+
+        // console.log(return_data);
+        // $('#statusimg').html("<i style='color:#F00;'> Error</i>");
+      }
+  }
+  hr.send(formdata);
+   $("#statusimg"+img).fadeIn();
+   $('#statusimg'+img).html("<i style='color:#5cb85c;'>uploading...</i></i>");
+}
 
 </script> 
         <!-- Bootstrap core JavaScript -->
