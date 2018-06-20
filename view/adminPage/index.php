@@ -144,6 +144,66 @@
           </div>
 
         </div>
+<script type="text/javascript">getProducts();</script>
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            All Products
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row">
+                                <h4 id="requestSearch_status"></h4>
+                                <div class="col-sm-12">
+                                <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="photo" style="width: 71px;">Photo</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Name" style="width: 90px;">Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Price" style="width: 81px;">Price</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Color" style="width: 60px;">Color</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Category" style="width: 60px;">Category</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Brand" style="width: 60px;">Brand</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Quantity" style="width: 60px;">Quantity</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Action" style="width: 60px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="result_output">
+                                    <tr class="gradeA odd" role="row" id="deleterecord-ID">
+                                            <td>
+                                                 <img src="../../productImg/{{ $food['image'] }}" id="food_avertaupdate-ID" style="height: 40px; width: 50px;">
+                                            </td>
+                                            <td>Win 98+ / OSX.2+</td>                                            
+                                            <td class="center">1.7</td>
+                                            <td class="sorting_1">Gecko</td>
+                                            <td>Firefox 1.0</td>
+                                            <td>Win 98+ / OSX.2+</td>
+                                            <td>Win 98+ / OSX.2+</td>                                            
+                                            <td class="center">
+                                                <a data-toggle="modal" data-target="#myModal-ID" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
+                                                 <a onClick="deletefood('{{ $food->FoodID }}','{{ $food->Name }}','foodimg/{{ $food->image }}')" id="fooddeltemessage{{ $food['FoodID'] }}" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
+                                            </td>
+                                        </tr>
+                                       
+                                        
+                                    </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+
 
       </div>
 
@@ -173,22 +233,22 @@ $(document).ready(function(){
     formdata.append("Brand", brand);
     formdata.append("Price", price);
     var hr = new XMLHttpRequest();
-    var url = "app/controller/productController.php";
+    var url = "../../app/controller/productController.php";
       hr.open("POST", url, true);
       hr.onreadystatechange = function() {
     if (hr.readyState == 4 && hr.status == 200) {
-      var return_data = JSON.parse(hr.responseText);
+      var return_data = hr.responseText;
       if(return_data == "true"){
         
         $('#result_output').prepend('');
             document.getElementById("Product_averta").src = 'Productimg/photo_default.png';
             
-            $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); $('#savestatus').html('');
+            $('#savestatus1').html(''); $('#savestatus2').html(''); $('#savestatus3').html(''); $('#savestatus4').html(''); $('#savestatus5').html(''); $('#savestatus6').html(''); $('#savestatus7').html(''); //$('#savestatus').html('');
           $('#savestatus').html("<i style='color:#5cb85c;'>Save Successful</i>");
           $("#savestatus").fadeOut(9000);
              clearFields();
       }else{
-           
+           $('#savestatus').html("<i style='color:#5cb85c;'>"+return_data+"</i>");
       }
         
     }else{
@@ -199,16 +259,56 @@ $(document).ready(function(){
    $("#savestatus").fadeIn();
    $('#savestatus').html("<i style='color:#5cb85c;'>Saving Product Product...<i class='icon-spin6 animate-spin'></i></i></i>");
     });
-//End of Document.ready function
+
+
+//*************Get all products***************
+    var hr = new XMLHttpRequest();
+    var url = "../../app/controller/productController.php";
+    var vars = "getAllProducts=true";
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.onreadystatechange = function() {
+      if(hr.readyState == 4 && hr.status == 200) {
+        var return_data = hr.responseText;
+        //var return_datad = JSON.parse(hr.responseText);
+        $('#result_output').html(return_data);
+        //console.log(return_datad.);
+        //$('#requestSearch_status').html("");
+      }
+    }
+    
+    hr.send(vars);
+    $('#requestSearch_status').html("<i style='color:green;'>Retrieving Products........</i>");
+
+    //End of Document.ready function
  });
 function clearFields() {
   $('#Product_form').find('input:text').val('');
   $('#pCategory option:first').prop('selected',true);
-  $("#FDquantity").val('')
+  $("#pQuantity").val('');
   $('#pBrand option:first').prop('selected',true);
   $('#pColor option:first').prop('selected',true);
-  $("#FDprice").val('')
+  $("#pPrice").val('');
 }
+
+function getProducts(){ 
+    // var hr = new XMLHttpRequest();
+    // var url = "../../app/controller/productController.php";
+    // var vars = "getAllProducts=true";
+    // hr.open("POST", url, true);
+    // hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // hr.onreadystatechange = function() {
+    //   if(hr.readyState == 4 && hr.status == 200) {
+    //     var return_data = hr.responseText;
+    //     $('#result_output').html(return_data);
+    //     //$('#requestSearch_status').html("");
+    //   }
+    // }
+    
+    // hr.send(vars);
+    // $('#requestSearch_status').html("<i style='color:green;'>Retrieving Products........</i>");
+ 
+  }
 
 </script> 
         <!-- Bootstrap core JavaScript -->
@@ -218,10 +318,18 @@ function clearFields() {
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
     <script src="../../assets/sbadmin/js/morris/chart-data-morris.js"></script>
-    <script src="../../assets/sbadmin/js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="../../assets/sbadmin/js/tablesorter/tables.js"></script>
+    <script src="../../assets/sbadmin/js/media/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/sbadmin/js/media/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../assets/sbadmin/js/media/dataTables.responsive.js"></script>
 
     
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 <?php
 //include_once("footer.php");
 ?>  
