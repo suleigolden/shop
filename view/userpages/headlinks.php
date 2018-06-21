@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("app/model/check_authenticationlog.php");
 ?>
 <head>

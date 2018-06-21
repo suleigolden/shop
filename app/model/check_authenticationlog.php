@@ -23,4 +23,8 @@ exit();
  $_SESSION['userlog@Identication@NaviGaTion'] = $U_NavID; 
 }
 
+function saveCartOrder($connect){
+	
+}
+
 ?>
