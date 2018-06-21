@@ -24,7 +24,7 @@ include_once("head.php");
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Img/name/color</th>
+                                            <th></th>
                                             <th>Brand</th>
                                             <th>category</th>
                                             <th>Price</th>
