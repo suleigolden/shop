@@ -29,7 +29,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-          <li><a href=""><i class="fa fa-shopping-cart"></i> 10 <br>shopping cart</a></li>  
+          <li><a href=""><i class="fa fa-shopping-cart"></i> <label id="myCartotal"></label><br>shopping cart</a></li>  
             <li class="scroll"><a href="?/=login">Log in</a></li>  
           </ul>
         </div>

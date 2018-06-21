@@ -129,7 +129,20 @@ while($row = $sql->fetch_array()){
 			$getQuantity = $row['quantity'];
      }
 
-return '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+return '<tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
+                                            <td>
+                                                 <img src="../../productImg/'.$getImage.'" id="updateProductImg'.$ID.'" style="height: 40px; width: 50px;">
+                                            </td>
+                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
+                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
+                                            <td id="updColor'.$ID.'">'.$getColor.'</td>
+                                            <td id="updCategory'.$ID.'">'.$getCategory.'</td>
+                                            <td id="updBrand'.$ID.'">'.$getBrand.'</td>
+                                            <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
+                                            <td class="center">
+                                                <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
+                                                 <a onClick="deleteProduct(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
+                                                 <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -209,22 +222,10 @@ return '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role
                                 </div>
                                 
                             </div>
-                            <tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
-                                            <td>
-                                                 <img src="../../productImg/'.$getImage.'" id="updateProductImg'.$ID.'" style="height: 40px; width: 50px;">
-                                            </td>
-                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
-                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
-                                            <td id="updColor'.$ID.'">'.$getColor.'</td>
-                                            <td id="updCategory'.$ID.'">'.$getCategory.'</td>
-                                            <td id="updBrand'.$ID.'">'.$getBrand.'</td>
-                                            <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
-                                            <td class="center">
-                                                <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
-                                                 <a onClick="deleteProduct(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
 
-                                        </tr>';
+                                        </tr>
+                                       ';
 
 
 }
@@ -364,10 +365,10 @@ $allProducts .='<div class="col-md-4 text-center">
     height: 330px;
 " alt="name">
                     <div class="caption">
-                        <h4>'.$getBrand.' '.$getName.' ('.$getColor.')<br>
+                        <h4 style="font-size:11px;">'.$getBrand.' '.$getName.' <br><label style="font-size:11px;">('.$getColor.')</label><br>
                             <small style="color: #F00;">€ '.$getPrice.'</small>
                         </h4>
-                        <a href="" class="btn btn-primary min"><i class="fa fa-shopping-cart"></i> buy</a>
+                        <a onClick="addTocart(\''.$ID.'\',\''.$getName.'\',\''.$getPrice.'\')" id="Productdeltemessage'.$ID.'" class="btn btn-primary min"><i class="fa fa-shopping-cart"></i> Buy</a>
                     </div>
                 </div>  
             </div>';
@@ -375,6 +376,16 @@ $allProducts .='<div class="col-md-4 text-center">
 
 echo $allProducts;
 
+}
+
+//Mehod to  add product to cart
+function addProductToCart($connect, $product){
+	session_start();
+	if(empty($_SESSION['shoppinCartProducts'])){
+		$_SESSION['shoppinCartProducts'] = array();
+	}
+	array_push($_SESSION['shoppinCartProducts'], $product);
+	echo count($_SESSION['shoppinCartProducts']);
 }
 
 

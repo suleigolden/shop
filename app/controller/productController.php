@@ -30,6 +30,8 @@ if(isset($_FILES["ProductImage"]["name"])
 	$Request ->  updateProductImage($connect);
 }elseif(isset($_POST['ProductdeleterecordID']) && isset($_POST['oldImage'])){
 	$Request ->  deleteProduct($connect);
+}elseif(isset($_POST['addtoCartID'])){
+	$Request ->  addProductToCart($connect,$_POST['addtoCartID']);
 }else{
 	echo "NOOOO";
 	//$Request ->  loginUser($connect);
