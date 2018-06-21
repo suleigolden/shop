@@ -62,7 +62,30 @@ include_once("head.php");
  function number_format(n) {
         var parts=n.toString().split(".");
         return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+}
+ function removeCart(ProductID,price){
+      var vars = "removetoCartID="+ProductID;
+      var hr = new XMLHttpRequest();
+      var url = "app/controller/productController.php";
+      hr.open("POST", url, true);
+      hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      hr.onreadystatechange = function() {
+        if (hr.readyState == 4 && hr.status == 200) {
+          var return_data = hr.responseText;
+          var total = document.getElementById("totl_Amount").value;
+            total = total - price;
+            $('#totalText').html(number_format(total));
+            $('#totl_Amount').val(total);
+            // var elem = document.getElementById("cart"+ProductID);
+            // elem.parentElement.removeChild(elem);
+          $('#myCartotal').html(return_data);
+          $("#cart"+ProductID).fadeOut(2000);
+         //$('#cart'+ProductID).html('');
     }
+  }
+  hr.send(vars);
+  $('#removeMeCart'+ProductID).html("<i style='color:green;'>removing..</i>");
+ }
 
 </script>
 <?php

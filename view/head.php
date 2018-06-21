@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+//if(sizeof($_SESSION['shoppinCartProducts']) < 2){
+    //$_SESSION['shoppinCartProducts'] = null;
+  //}
 ?>
 <head>
   <meta charset="utf-8">
@@ -33,7 +35,7 @@ session_start();
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-          <li><a href=""><i class="fa fa-shopping-cart"></i> <label id="myCartotal"><?php echo count($_SESSION['shoppinCartProducts']);
+          <li><a href=""><i class="fa fa-shopping-cart"></i> <label id="myCartotal"><?php echo sizeof($_SESSION['shoppinCartProducts']);
  ?></label><br>shopping cart</a></li>  
             <li class="scroll"><a href="?/=login">Log in</a></li>  
           </ul>

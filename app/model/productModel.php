@@ -118,7 +118,7 @@ if(mysqli_query($connect,"DELETE FROM products WHERE id='$proudctID'")){
 //Metho to get the last product inserted
 function getProductinserted($connect){
 $sql = mysqli_query($connect,"SELECT * FROM products ");
-while($row = $sql->fetch_array()){
+while($row = mysqli_fetch_array($sql)){
 			$ID = $row['id'];
 			$getName = $row['productName'];
 			$getPrice = $row['price'];
@@ -233,7 +233,7 @@ return '<tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
 function getallProduct($connect){
 $allProducts .= '';
 $sql = mysqli_query($connect,"SELECT * FROM products ");
-while($row = $sql->fetch_array()){
+while($row = mysqli_fetch_array($sql)){
 			$ID = $row['id'];
 			$getName = $row['productName'];
 			$getPrice = $row['price'];
@@ -349,7 +349,7 @@ $allProducts .= '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex=
 function getallProductToUser($connect){
 $allProducts .= '';
 $sql = mysqli_query($connect,"SELECT * FROM products ORDER BY id DESC");
-while($row = $sql->fetch_array()){
+while($row = mysqli_fetch_array($sql)){
 			$ID = $row['id'];
 			$getName = $row['productName'];
 			$getPrice = $row['price'];
@@ -384,7 +384,7 @@ $carts = implode(',', $_SESSION['shoppinCartProducts']);
 $allCarts .= '';
 $totalAmount = 0;
 $sql = mysqli_query($connect,"SELECT * FROM products WHERE id IN ($carts) ");
-while($row = $sql->fetch_array()){
+while($row = mysqli_fetch_array($sql)){
 			$ID = $row['id'];
 			$getName = $row['productName'];
 			$getPrice = $row['price'];
@@ -394,7 +394,7 @@ while($row = $sql->fetch_array()){
 			$getCategory = $row['category'];
 			$getQuantity = $row['quantity'];
 $totalAmount += $getPrice;
-$allCarts .='<li id="cart'.$ID.'"><div class="checkbox"><input type="hidden" name="ProductAmount" value="'.$getPrice.'"><label for="visit4" class="css-label">'.$getName.'<strong> € '.$getPrice.' <i class="fa fa-times-circle" style="color:#F00;" title="Remove" onclick="removeCart(\''.$ID.'\');"></i></strong></label></div></li>';
+$allCarts .='<li id="cart'.$ID.'"><div class="checkbox"><input type="hidden" name="ProductAmount" value="'.$getPrice.'"><label for="visit4" class="css-label">'.$getName.'<strong> € '.$getPrice.' <label id="removeMeCart'.$ID.'" ><i class="fa fa-times-circle" style="color:#F00;" title="Remove" onclick="removeCart(\''.$ID.'\',\''.$getPrice.'\');"></i></label></strong></label></div></li>';
 		}
 $allCarts .='<li>
                   <div class="checkbox">
@@ -409,14 +409,43 @@ $allCarts .='<li>
 //Mehod to  add product to cart
 function addProductToCart($connect, $product){
 	session_start();
+	//$_SESSION['shoppinCartProducts'] = null;
 	if(empty($_SESSION['shoppinCartProducts'])){
 		$_SESSION['shoppinCartProducts'] = array();
 	}
 	array_push($_SESSION['shoppinCartProducts'], $product);
-	echo count($_SESSION['shoppinCartProducts']);
+	// array_push($_SESSION['shoppinCartProducts'], $product);
+	// echo count($_SESSION['shoppinCartProducts']);
 
+	echo $this->totalCart();
 	//echo json_encode(array('foo' => 'bar'));
 }
+//function to get total cart
+function totalCart(){
+	// foreach ($_SESSION['shoppinCartProducts'] as $key => $value) {
+ //    if (empty($value)) {
+ //       unset($_SESSION['shoppinCartProducts'][$key]);
+	// 	}
+	// }
+	// if (empty($_SESSION['shoppinCartProducts'])) {
+	// 	   $_SESSION['shoppinCartProducts'] = null;
+	// }
+	return count($_SESSION['shoppinCartProducts']);
+}
+//function to remove product from array
+function removeProductToCart($connect, $product){
+	session_start();
+ $key=array_search($product,$_SESSION['shoppinCartProducts']);
+    if($key!==false){
+    unset($_SESSION['shoppinCartProducts'][$key]);
+}
+    //$_SESSION["shoppinCartProducts"] = array_values($_SESSION["shoppinCartProducts"]);
+//reset($_SESSION["shoppinCartProducts"]);
+//echo count($_SESSION['shoppinCartProducts']);
+    echo $this->totalCart();
+
+}
+
 
 
 }
