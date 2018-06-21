@@ -14,5 +14,4 @@ include_once("app/model/check_authenticationlog.php");
     <link rel="stylesheet" href="assets/sbadmin/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
     <script src="assets/scripts/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="assets/scripts/main_Authentication.js"></script>
   </head>

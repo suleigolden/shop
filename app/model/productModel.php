@@ -406,6 +406,35 @@ $allCarts .='<li>
                  <a href="?/=checkOut" class="btn btn-success min"><i class="fa fa-shopping-cart"></i> Check Out</a>';
  echo $allCarts;
 }
+//function ot get all current carts when user log in
+function getallCartsToUserlogin($connect){
+session_start();
+$carts = implode(',', $_SESSION['shoppinCartProducts']);
+$allCarts .= '';
+$totalAmount = 0;
+$sql = mysqli_query($connect,"SELECT * FROM products WHERE id IN ($carts) ");
+while($row = mysqli_fetch_array($sql)){
+			$ID = $row['id'];
+			$getName = $row['productName'];
+			$getPrice = $row['price'];
+			$getImage = $row['image'];
+			$getColor = $row['color'];
+			$getBrand = $row['brand'];
+			$getCategory = $row['category'];
+			$getQuantity = $row['quantity'];
+$totalAmount += $getPrice;
+$allCarts .='<li id="cart'.$ID.'"><div class="checkbox"><input type="hidden" name="ProductAmount" value="'.$getPrice.'"><label for="visit4" class="css-label">'.$getName.'<strong> € '.$getPrice.' <label id="removeMeCart'.$ID.'" ><i class="fa fa-times-circle" style="color:#F00;" title="Remove" onclick="removeCart(\''.$ID.'\',\''.$getPrice.'\');"></i></label></strong></label></div></li>';
+		}
+$allCarts .='<li>
+                  <div class="checkbox">
+                     <label for="visit4" class="css-label"><h4>
+                     <input type="hidden" id="totl_Amount" value="'.$totalAmount.'">
+                      Total <strong><label>€</label><label id="totalText">'.number_format($totalAmount).'</label></strong> </h4></label>
+                 </div>
+                </li>
+                 <a href="?/&goto=dashboard" class="btn btn-success min"><i class="fa fa-shopping-cart"></i> Check Out</a>';
+ echo $allCarts;
+}
 //function to get all check out
 function getallCheckout($connect){
 session_start();
