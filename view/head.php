@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <head>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +27,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">
+          <a class="navbar-brand" href="../shop">
             <h4>Suleiman Shopping</h4>
           </a>                    
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-          <li><a href=""><i class="fa fa-shopping-cart"></i> <label id="myCartotal"></label><br>shopping cart</a></li>  
+          <li><a href=""><i class="fa fa-shopping-cart"></i> <label id="myCartotal"><?php echo count($_SESSION['shoppinCartProducts']);
+ ?></label><br>shopping cart</a></li>  
             <li class="scroll"><a href="?/=login">Log in</a></li>  
           </ul>
         </div>

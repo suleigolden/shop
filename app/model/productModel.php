@@ -377,7 +377,35 @@ $allProducts .='<div class="col-md-4 text-center">
 echo $allProducts;
 
 }
+//function ot get all current carts to user
+function getallCartsToUser($connect){
+session_start();
+$carts = implode(',', $_SESSION['shoppinCartProducts']);
+$allCarts .= '';
+$totalAmount = 0;
+$sql = mysqli_query($connect,"SELECT * FROM products WHERE id IN ($carts) ");
+while($row = $sql->fetch_array()){
+			$ID = $row['id'];
+			$getName = $row['productName'];
+			$getPrice = $row['price'];
+			$getImage = $row['image'];
+			$getColor = $row['color'];
+			$getBrand = $row['brand'];
+			$getCategory = $row['category'];
+			$getQuantity = $row['quantity'];
+$totalAmount += $getPrice;
+$allCarts .='<li id="cart'.$ID.'"><div class="checkbox"><input type="hidden" name="ProductAmount" value="'.$getPrice.'"><label for="visit4" class="css-label">'.$getName.'<strong> € '.$getPrice.' <i class="fa fa-times-circle" style="color:#F00;" title="Remove" onclick="removeCart(\''.$ID.'\');"></i></strong></label></div></li>';
+		}
+$allCarts .='<li>
+                  <div class="checkbox">
+                     <label for="visit4" class="css-label"><h4>
+                     <input type="hidden" id="totl_Amount" value="'.$totalAmount.'">
+                      Total <strong><label>€</label><label id="totalText">'.$totalAmount.'</label></strong> </h4></label>
+                 </div>
+                </li>';
+ echo $allCarts;
 
+}
 //Mehod to  add product to cart
 function addProductToCart($connect, $product){
 	session_start();
@@ -386,6 +414,8 @@ function addProductToCart($connect, $product){
 	}
 	array_push($_SESSION['shoppinCartProducts'], $product);
 	echo count($_SESSION['shoppinCartProducts']);
+
+	//echo json_encode(array('foo' => 'bar'));
 }
 
 

@@ -81,6 +81,24 @@ $("#loginbtn").click(function(){
     hr.send(vars);
     $('#requestSearch_status').html("<i style='color:green;'>Loading Products............</i>");
 
+    //*************Get all products***************
+    var hrCart = new XMLHttpRequest();
+    var urlCart = "app/controller/productController.php";
+    var varsCart = "LoadallCarts=true";
+    hrCart.open("POST", urlCart, true);
+    hrCart.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hrCart.onreadystatechange = function() {
+      if(hrCart.readyState == 4 && hrCart.status == 200) {
+        var return_Cart = hrCart.responseText;
+        $('#total_cart').html(return_Cart);
+        //console.log(return_datad.);
+        $('#requestCar_status').html("");
+      }
+    }
+    
+    hrCart.send(varsCart);
+    $('#requestCar_status').html("<i style='color:green;'>Loading cart............</i>");
+
     //End of Document.ready function
 
 

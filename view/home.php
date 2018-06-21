@@ -20,13 +20,7 @@ include_once("head.php");
                             <!-- /row -->
                             <ul class="treatments clearfix">
                                     <div id="total_cart">
-                                    <li>
-                                        <div class="checkbox">
-                                            <label for="visit4" class="css-label"><h4>
-                                             <input type="hidden" id="totl_Amount" value="">
-                                            Total <strong><label>€</label><label id="totalText">0.00</label></strong> </h4></label>
-                                        </div>
-                                    </li>
+                                    <p id="requestCar_status"></p>
                                     </div>
                             </ul>
             </div>

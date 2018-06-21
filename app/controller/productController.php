@@ -26,6 +26,8 @@ if(isset($_FILES["ProductImage"]["name"])
 	$Request ->  getallProduct($connect);
 }elseif(isset($_POST['LoadallProducts'])){
 	$Request ->  getallProductToUser($connect);
+}elseif(isset($_POST['LoadallCarts'])){
+	$Request ->  getallCartsToUser($connect);
 }elseif(isset($_FILES["ProductImage"]["name"]) && isset($_POST['ProductID']) && isset($_POST['oldImageUpdate']) ){
 	$Request ->  updateProductImage($connect);
 }elseif(isset($_POST['ProductdeleterecordID']) && isset($_POST['oldImage'])){
