@@ -117,6 +117,23 @@ $("#loginbtn").click(function(){
     hrCheckout.send(varsCartout);
     $('#requestCheckout_status').html("<i style='color:green;'>Loading cart............</i>");
 
+    //*************Get all check out pay***************
+    var hrCheckoutpay = new XMLHttpRequest();
+    var urlCartout = "app/controller/productController.php";
+    var varsCartoutpay = "LoadaCheckoutPay=true";
+    hrCheckoutpay.open("POST", urlCartout, true);
+    hrCheckoutpay.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hrCheckoutpay.onreadystatechange = function() {
+      if(hrCheckoutpay.readyState == 4 && hrCheckoutpay.status == 200) {
+        var return_Cart = hrCheckoutpay.responseText;
+        $('#checkOutresult_output').html(return_Cart);
+        $('#requestCheckout_status').html("");
+      }
+    }
+    
+    hrCheckoutpay.send(varsCartoutpay);
+    $('#requestCheckout_status').html("<i style='color:green;'>Loading cart............</i>");
+
     //End of Document.ready function
 
 

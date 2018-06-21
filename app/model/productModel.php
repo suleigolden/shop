@@ -407,8 +407,7 @@ $allCarts .='<li>
  echo $allCarts;
 }
 //function to get all check out
-function getallCheckout
-	($connect){
+function getallCheckout($connect){
 session_start();
 $carts = implode(',', $_SESSION['shoppinCartProducts']);
 $allCarts .= '';
@@ -452,6 +451,52 @@ $allCarts .='
  			  </tr>';
  echo $allCarts;
 }
+//function to get all check out befor paying
+function getallCheckoutPay($connect){
+session_start();
+$carts = implode(',', $_SESSION['shoppinCartProducts']);
+$allCarts .= '';
+$totalAmount = 0;
+$sql = mysqli_query($connect,"SELECT * FROM products WHERE id IN ($carts) ");
+while($row = mysqli_fetch_array($sql)){
+			$ID = $row['id'];
+			$getName = $row['productName'];
+			$getPrice = $row['price'];
+			$getImage = $row['image'];
+			$getColor = $row['color'];
+			$getBrand = $row['brand'];
+			$getCategory = $row['category'];
+			$getQuantity = $row['quantity'];
+$totalAmount += $getPrice;
+$allCarts .='
+            <tr id="cart'.$ID.'">
+              <td>
+              <div style="float:left;">
+              <img class="img-responsive" src="productImg/'.$getImage.'" style="height: 109px; width: 100px;" alt="'.$getName.'" title="'.$getName.'">
+              </div>
+              <div style="float:left; padding-left:9px;">
+             <h4>'.$getBrand.' '.$getName.' <br><label style="font-size:11px;">('.$getColor.')</label></h4>
+             <strong>  <label id="removeMeCart'.$ID.'" ><i class="fa fa-times-circle" style="color:#F00; cursor:pointer;" title="Remove product" onclick="removeCart(\''.$ID.'\',\''.$getPrice.'\');">Remove product</i></label></strong>
+              </div>
+              </td>
+              <td>'.$getBrand.'</td>
+              <td>'.$getCategory.'</td>
+              <td>€ '.$getPrice.'</td>
+             </tr>';
+        }
+ $allCarts .='<tr><td></td>
+ 			  <td></td>
+ 			  <td></td>
+ 			  <td>
+ 			  <label for="visit4" class="css-label"><h4>
+                     <input type="hidden" id="totl_Amount" value="'.$totalAmount.'">
+                      <h3 style="color:#F00;">Total: <label>€ </label><label id="totalText"> '.number_format($totalAmount).'</label></h3> </h4></label><br>
+ 			  <a href="?/=login" class="btn btn-danger min"><i class="fa fa-shopping-cart"></i> Pay Now</a>
+ 			  </td>
+ 			  </tr>';
+ echo $allCarts;
+}
+
 //Mehod to  add product to cart
 function addProductToCart($connect, $product){
 	session_start();

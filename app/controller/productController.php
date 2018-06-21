@@ -30,6 +30,8 @@ if(isset($_FILES["ProductImage"]["name"])
 	$Request ->  getallCartsToUser($connect);
 }elseif(isset($_POST['LoadaCheckout'])){
 	$Request ->  getallCheckout($connect);
+}elseif(isset($_POST['LoadaCheckoutPay'])){
+	$Request ->  getallCheckoutPay($connect);
 }elseif(isset($_FILES["ProductImage"]["name"]) && isset($_POST['ProductID']) && isset($_POST['oldImageUpdate']) ){
 	$Request ->  updateProductImage($connect);
 }elseif(isset($_POST['ProductdeleterecordID']) && isset($_POST['oldImage'])){
