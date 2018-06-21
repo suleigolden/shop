@@ -402,7 +402,8 @@ $allCarts .='<li>
                      <input type="hidden" id="totl_Amount" value="'.$totalAmount.'">
                       Total <strong><label>€</label><label id="totalText">'.$totalAmount.'</label></strong> </h4></label>
                  </div>
-                </li>';
+                </li>
+                 <a href="?/=checkOut" class="btn btn-success min"><i class="fa fa-shopping-cart"></i> Check Out</a>';
  echo $allCarts;
 
 }
