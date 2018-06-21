@@ -520,7 +520,7 @@ $allCarts .='
  			  <label for="visit4" class="css-label"><h4>
                      <input type="hidden" id="totl_Amount" value="'.$totalAmount.'">
                       <h3 style="color:#F00;">Total: <label>€ </label><label id="totalText"> '.number_format($totalAmount).'</label></h3> </h4></label><br>
- 			  <a href="?/=login" class="btn btn-danger min"><i class="fa fa-shopping-cart"></i> Pay Now</a>
+ 			  <a href="?/&goto=payment" class="btn btn-danger min"><i class="fa fa-shopping-cart"></i> Pay Now</a>
  			  </td>
  			  </tr>';
  echo $allCarts;
