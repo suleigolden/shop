@@ -4,6 +4,7 @@
 include_once("headlinks.php");
 
 $paymentMethod = $_GET['method'];
+$_SESSION['PaymenType'] = $paymentMethod;
  if($paymentMethod !="mastercard" && $paymentMethod != "bank"){
   echo "<script type='text/javascript'>window.location.href = '?/&goto=payment';</script>"; 
 exit();
