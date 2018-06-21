@@ -62,7 +62,7 @@ $("#loginbtn").click(function(){
 
 
 
-//*************Get all products***************
+//*************Get all products admin***************
     var hr = new XMLHttpRequest();
     var url = "app/controller/productController.php";
     var vars = "LoadallProducts=true";
@@ -81,7 +81,7 @@ $("#loginbtn").click(function(){
     hr.send(vars);
     $('#requestSearch_status').html("<i style='color:green;'>Loading Products............</i>");
 
-    //*************Get all products***************
+    //*************Get all products users***************
     var hrCart = new XMLHttpRequest();
     var urlCart = "app/controller/productController.php";
     var varsCart = "LoadallCarts=true";
@@ -98,6 +98,24 @@ $("#loginbtn").click(function(){
     
     hrCart.send(varsCart);
     $('#requestCar_status').html("<i style='color:green;'>Loading cart............</i>");
+
+    //*************Get all check out***************
+    var hrCheckout = new XMLHttpRequest();
+    var urlCartout = "app/controller/productController.php";
+    var varsCartout = "LoadaCheckout=true";
+    hrCheckout.open("POST", urlCartout, true);
+    hrCheckout.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hrCheckout.onreadystatechange = function() {
+      if(hrCheckout.readyState == 4 && hrCheckout.status == 200) {
+        var return_Cart = hrCheckout.responseText;
+        $('#checkOutresult_output').html(return_Cart);
+        //console.log(return_datad.);
+        $('#requestCheckout_status').html("");
+      }
+    }
+    
+    hrCheckout.send(varsCartout);
+    $('#requestCheckout_status').html("<i style='color:green;'>Loading cart............</i>");
 
     //End of Document.ready function
 
