@@ -3,11 +3,11 @@
 <?php
 include_once("headlinks.php");
 session_start();
-  $_SESSION['NameonCard'] = $_GET['NameonCard'];
-  $_SESSION['CardNumber'] = $_GET['CardNumber'];
-  $_SESSION['section_yes'] = $_GET['ExpirationDate'];
-  $_SESSION['prize_yes'] = $_GET['SecurityCode'];
-  $_SESSION['name_yes'] = $_GET['HomeAddress'];
+      $_SESSION['NameonCard'] = $_GET['NameonCard'];
+      $_SESSION['CardNumber'] = $_GET['CardNumber'];
+      $_SESSION['ExpirationDate'] = $_GET['ExpirationDate'];
+      $_SESSION['SecurityCode'] = $_GET['SecurityCode'];
+      $_SESSION['HomeAddress'] = $_GET['HomeAddress'];
 ?>
   <body>
 

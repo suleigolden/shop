@@ -20,11 +20,7 @@ $querycheck= mysqli_query($connect,"SELECT * FROM users WHERE Email='$Email_addr
  	//echo "<script type='text/javascript'>window.location.href = 'http://localhost/suleiman/shop/';</script>"; 
 exit();
 }else{
- $_SESSION['userlog@Identication@NaviGaTion'] = $U_NavID; 
-}
-
-function saveCartOrder($connect){
-	
+ $_SESSION['userIdentificationNavi'] = $U_NavID; 
 }
 
 ?>
