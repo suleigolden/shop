@@ -25,6 +25,6 @@
    <h1>Test</h1>
 
    <p>
-     <a href="https://thelastcodebender.com/shop/">Click to see Life Demo or copy and paste the link in you url press enter   https://thelastcodebender.com/shop/</a>
+     <a href="https://thelastcodebender.com/shop/" target="_blank">Click to see Life Demo or copy and paste the link in you url press enter   https://thelastcodebender.com/shop/</a>
 
    </p>
