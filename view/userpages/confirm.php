@@ -4,7 +4,11 @@
 include_once("headlinks.php");
 //include_once("app/model/check_authenticationlog.php");
 function saveCartOrder($connect){
-  if(!empty($_SESSION['userIdentificationNavi']) && empty($_SESSION['shoppinCartProducts']) && !empty($_SESSION['NameonCard']) && !empty($_SESSION['CardNumber']) && !empty($_SESSION['ExpirationDate']) && !empty($_SESSION['SecurityCode']) && !empty($_SESSION['HomeAddress'])){
+  if(!isset($_SESSION['shoppinCartProducts']) || $_SESSION['shoppinCartProducts'] =='' ){
+
+   //echo '<script language="javascript">document.location = "?/&goto=confirm"; </script>'
+
+  }else{
 $carts = implode(',', $_SESSION['shoppinCartProducts']);
 mysqli_query($connect,"INSERT INTO ordercart VALUES ('',
   '".$_SESSION['userIdentificationNavi']."',
@@ -16,29 +20,21 @@ mysqli_query($connect,"INSERT INTO ordercart VALUES ('',
   '".$_SESSION['HomeAddress']."',
   '".$_SESSION['PaymenType']."',Now())");
 //Clear transaction and payment SESSION
-      $_SESSION['shoppinCartProducts'] = '';
-      $_SESSION['NameonCard'] = "";
-      $_SESSION['CardNumber'] = "";
-      $_SESSION['ExpirationDate'] = "";
-      $_SESSION['SecurityCode'] = "";
-      $_SESSION['HomeAddress'] = "";
-      $_SESSION['PaymenType'] = "";
+        unset($_SESSION['shoppinCartProducts']);
+        unset($_SESSION['NameonCard']);
+        unset($_SESSION['CardNumber']);
+        unset($_SESSION['ExpirationDate']);
+        unset($_SESSION['SecurityCode']);
+        unset($_SESSION['HomeAddress']);
+        unset($_SESSION['PaymenType']);
 
   foreach ($_SESSION['shoppinCartProducts'] as $key => $value) {
     if (empty($value)) {
        unset($_SESSION['shoppinCartProducts'][$key]);
    }
   }
-   //echo '<script language="javascript">document.location = "?/&goto=confirm"; </script>';
 
-  }else{
 
-      // $_SESSION['shoppinCartProducts'] = '';
-      // $_SESSION['NameonCard'] = "";
-      // $_SESSION['CardNumber'] = "";
-      // $_SESSION['ExpirationDate'] = "";
-      // $_SESSION['SecurityCode'] = "";
-      // $_SESSION['HomeAddress'] = "";
   }
 }
 
