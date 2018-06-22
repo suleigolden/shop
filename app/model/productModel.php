@@ -242,7 +242,21 @@ while($row = mysqli_fetch_array($sql)){
 			$getBrand = $row['brand'];
 			$getCategory = $row['category'];
 			$getQuantity = $row['quantity'];
-$allProducts .= '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+$allProducts .= '
+                            <tr  role="row" id="Productdeleterecord'.$ID.'">
+                                            <td>
+                                                 <img src="../../productImg/'.$getImage.'" id="updateProductImg'.$ID.'" style="height: 40px; width: 50px;">
+                                            </td>
+                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
+                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
+                                            <td id="updColor'.$ID.'">'.$getColor.'</td>
+                                            <td id="updCategory'.$ID.'">'.$getCategory.'</td>
+                                            <td id="updBrand'.$ID.'">'.$getBrand.'</td>
+                                            <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
+                                            <td class="center">
+                                                <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
+                                                 <a onClick="deleteProduct(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
+                                                 <div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -322,19 +336,6 @@ $allProducts .= '<div class="modal fade" id="myModalnewProduct'.$ID.'" tabindex=
                                 </div>
                                 
                             </div>
-                            <tr class="gradeA odd" role="row" id="Productdeleterecord'.$ID.'">
-                                            <td>
-                                                 <img src="../../productImg/'.$getImage.'" id="updateProductImg'.$ID.'" style="height: 40px; width: 50px;">
-                                            </td>
-                                            <td id="upName'.$ID.'">'.$getName.'</td>                                            
-                                            <td id="updPrice'.$ID.'">€ '.$getPrice.'</td>
-                                            <td id="updColor'.$ID.'">'.$getColor.'</td>
-                                            <td id="updCategory'.$ID.'">'.$getCategory.'</td>
-                                            <td id="updBrand'.$ID.'">'.$getBrand.'</td>
-                                            <td id="updQuantity'.$ID.'">'.$getQuantity.'</td>                                            
-                                            <td class="center">
-                                                <a data-toggle="modal" data-target="#myModalnewProduct'.$ID.'" style="background-color: #449d44; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-edit white"></i> Edit </a>
-                                                 <a onClick="deleteProduct(\''.$ID.'\',\''.$getName.'\',\''.$getImage.'\')" id="Productdeltemessage'.$ID.'" style="background-color: #d9534f; color: #FFF; font-size: 11px; padding: 3px;" class="btn primary"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
 
                                         </tr>

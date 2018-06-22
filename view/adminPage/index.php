@@ -115,19 +115,21 @@ include_once("head.php");
                                 <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="photo" style="width: 71px;">Photo</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Name" style="width: 90px;">Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Price" style="width: 81px;">Price</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Color" style="width: 60px;">Color</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Category" style="width: 60px;">Category</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Brand" style="width: 60px;">Brand</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Quantity" style="width: 60px;">Quantity</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Action" style="width: 60px;">Action</th>
+                                        <th>Photo</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Color</th>
+                                        <th>Category</th>
+                                        <th>Brand</th>
+                                        <th>Quantity</th>
+                                        <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="result_output">
                                     
                                     </tbody>
+                                    
+
                                 </table>
                                 </div>
                                 </div>
@@ -379,19 +381,7 @@ function deleteProduct(id,Product,img){
     <!-- Page Specific Plugins -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="../../assets/sbadmin/js/morris/chart-data-morris.js"></script>
-    <script src="../../assets/sbadmin/js/media/js/jquery.dataTables.min.js"></script>
-    <script src="../../assets/sbadmin/js/media/js/dataTables.bootstrap.min.js"></script>
-    <script src="../../assets/sbadmin/js/media/dataTables.responsive.js"></script>
-
     
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
 <?php
 //include_once("footer.php");
 ?>  
