@@ -37,7 +37,8 @@ session_start();
           <ul class="nav navbar-nav navbar-right">
           <li><a href="?/=checkOut"><i class="fa fa-shopping-cart"></i> <label id="myCartotal"><?php echo sizeof($_SESSION['shoppinCartProducts']);
  ?></label><br>shopping cart</a></li>  
-            <li class="scroll"><a href="?/=login">Log in</a></li>  
+            <li class="scroll"><a href="?/=login">Log in</a></li>
+            <li class="scroll"><a href="view/adminPage/" target="_blank">ADMIN PAGE</a></li>  
           </ul>
         </div>
       </div>
