@@ -2,49 +2,6 @@
 <html lang="en">
 <?php
 include_once("headlinks.php");
-//include_once("app/model/check_authenticationlog.php");
-function saveCartOrder($connect){
-  if(!empty($_SESSION['userIdentificationNavi']) && empty($_SESSION['shoppinCartProducts']) && !empty($_SESSION['NameonCard']) && !empty($_SESSION['CardNumber']) && !empty($_SESSION['ExpirationDate']) && !empty($_SESSION['SecurityCode']) && !empty($_SESSION['HomeAddress'])){
-$carts = implode(',', $_SESSION['shoppinCartProducts']);
-mysqli_query($connect,"INSERT INTO ordercart VALUES ('',
-  '".$_SESSION['userIdentificationNavi']."',
-  '".$carts."',
-  '".$_SESSION['NameonCard']."',
-  '".$_SESSION['CardNumber']."',
-  '".$_SESSION['ExpirationDate']."',
-  '".$_SESSION['SecurityCode']."',
-  '".$_SESSION['HomeAddress']."',
-  '".$_SESSION['PaymenType']."',Now())");
-//Clear transaction and payment SESSION
-      $_SESSION['shoppinCartProducts'] = '';
-      $_SESSION['NameonCard'] = "";
-      $_SESSION['CardNumber'] = "";
-      $_SESSION['ExpirationDate'] = "";
-      $_SESSION['SecurityCode'] = "";
-      $_SESSION['HomeAddress'] = "";
-      $_SESSION['PaymenType'] = "";
-
-  foreach ($_SESSION['shoppinCartProducts'] as $key => $value) {
-    if (empty($value)) {
-       unset($_SESSION['shoppinCartProducts'][$key]);
-   }
-  }
-   //echo '<script language="javascript">document.location = "?/&goto=confirm"; </script>';
-
-  }else{
-
-      // $_SESSION['shoppinCartProducts'] = '';
-      // $_SESSION['NameonCard'] = "";
-      // $_SESSION['CardNumber'] = "";
-      // $_SESSION['ExpirationDate'] = "";
-      // $_SESSION['SecurityCode'] = "";
-      // $_SESSION['HomeAddress'] = "";
-  }
-}
-
-saveCartOrder($connect);
-
-
 ?>
   <body>
 
@@ -55,27 +12,20 @@ include_once("navigation.php");
 ?>
 
       <div id="page-wrapper">
+      	<div class="row">
+            <h2 class="page-header" style="text-align:center;">My Order</h2>
 
-        <div class="row">
-          
-          <div class="row">
-          <div class="col-lg-12">
-            <h1><small style="color:#FFF; background-color: #F00; border-radius: 90px; padding: 10px;">4</small>  Transaction Completed</h1>
-          </div>
-          <hr>
-            <div class="col-lg-11">
-                <h1 style="text-align: center;">Thank you for shopping with us!</h1>
-               <div id="content" class="padding-20">
-
-          <div class="panel panel-default">
+            <div class="col-lg-12" id="result_output">
+                <div class="panel panel-default">
             <div class="panel-body">
 
               <div class="row">
 
                 <div class="col-md-6 col-sm-6 text-left">
                 <?php
-                  $uID = $_SESSION['userIdentificationNavi'];
-                  $querycheck= mysqli_query($connect,"SELECT * FROM ordercart WHERE UserID='$uID' ");
+                  $UserID = $_SESSION['userIdentificationNavi'];
+                  $uID = $_GET['cart'];
+                  $querycheck= mysqli_query($connect,"SELECT * FROM ordercart WHERE id='$uID' AND UserID='$UserID' ");
                       while($revnt = mysqli_fetch_assoc($querycheck)){
                         $tranID = $revnt['id'];
                         $getUserID = $revnt['UserID'];
@@ -190,8 +140,6 @@ include_once("navigation.php");
           </div>
 
         </div>
-
-      </div>
             </div>
             <div class="col-lg-3" style="border-left:3px #CCC solid;">
                
@@ -199,13 +147,10 @@ include_once("navigation.php");
           
 
         </div>
-
-        </div>
-
       </div>
 
     </div>
-
+ 
 <?php
 include_once("footer.php");
 ?>  

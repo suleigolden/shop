@@ -18,7 +18,7 @@ $navigate_to = '?/&goto';
           <ul class="nav navbar-nav side-nav">
             <li class="active"><a href="<?php echo $navigate_to; ?>=dashboard"><i class="fa fa-dashboard"></i> Check Out</a></li>
             <li><a href="<?php echo $navigate_to; ?>=product"><i class="fa fa-th-list"></i> Products</a></li>
-            
+            <li><a href="<?php echo $navigate_to; ?>=order"><i class="fa fa-th-list"></i> My Order</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">
